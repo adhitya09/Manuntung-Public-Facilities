@@ -103,6 +103,13 @@
 
 
       <main class="main">
+        @if ($errors->any())
+        <div class="text-red-500 text-sm">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
         <!-- Hero Section -->
         <section id="hero" class="hero section">
           <div class="container">
