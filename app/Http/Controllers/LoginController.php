@@ -33,11 +33,24 @@ class LoginController extends Controller
         ]);
     }
 
-    public function logout(Request $request)
+    // public function logout(Request $request)
+    // {
+    //     Auth::logout();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
+    //     return redirect('/');
+    // }
+
+    public function destroy(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+
+        // Mengembalikan response JSON untuk logout sukses
+        return response()->json([
+            'success' => true,
+            'redirect_url' => route('index') // Bisa sesuaikan dengan halaman redirect setelah logout
+        ]);
     }
 }

@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\DashController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\FasilitasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +21,7 @@ use App\Http\Controllers\TrackingController;
 Route::get('/', function () {
     $title = 'Selamat Datang - Manuntung Public Facilities';
     return view('index', compact('title'));
-});
+})->name('index');
 Route::get('about', function () {
     $title = 'About - Manuntung Public Facilities';
     return view('about', compact('title'));
@@ -57,13 +55,37 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-Route::middleware('superadmin')->group(function () {
-    Route::get('dashboard-superadmin', [DashController::class, 'index_superadmin'])->name('superadmin');
+Route::middleware('superadmin')->prefix('dashboard-superadmin')->group(function () {
+    Route::get('/', [DashController::class, 'index_superadmin'])->name('superadmin');
+    // Route::resource('fasilitas', FasilitasController::class);
+    // Route::get('/fasilitas', FasilitasController::class);
+    // Halaman Index (List Semua Data Fasilitas)
+
 });
+
 Route::middleware('admin')->group(function () {
     Route::get('dashboard-admin', [DashController::class, 'index_admin'])->name('admin');
+    // Route::resource('fasilitas', FasilitasController::class);
 });
 Route::middleware('user')->group(function () {
     Route::get('dashboard', [DashController::class, 'index_user'])->name('user');
 });
+
+Route::get('fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
+
+// Halaman Tambah Fasilitas
+Route::get('fasilitas/create', [FasilitasController::class, 'create'])->name('fasilitas.create');
+
+// Proses Simpan Data Baru
+Route::post('fasilitas', [FasilitasController::class, 'store'])->name('fasilitas.store');
+
+// Halaman Edit Data Fasilitas
+Route::get('fasilitas/{id}/edit', [FasilitasController::class, 'edit'])->name('fasilitas.edit');
+
+// Proses Update Data Fasilitas
+Route::put('fasilitas/{id}', [FasilitasController::class, 'update'])->name('fasilitas.update');
+
+// Proses Hapus Data Fasilitas
+Route::delete('fasilitas/{id}', [FasilitasController::class, 'destroy'])->name('fasilitas.destroy');
