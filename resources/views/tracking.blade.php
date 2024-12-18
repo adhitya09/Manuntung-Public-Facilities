@@ -65,7 +65,7 @@
                                     Kalimantan Timur 76113</p>
                             </div>
                             <div class="tracking-button">
-                                <a href="{{ route('tracking_taman_adipura') }}" class="btn-tracking">
+                                <a href="" class="btn-tracking">
                                     <img src="assets/img/titik.png" alt="Tracking Icon" class="tracking-icon">
                                     TRACKING
                                     <i class="bi bi-chevron-right"></i>
