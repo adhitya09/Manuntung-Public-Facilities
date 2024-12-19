@@ -10,7 +10,8 @@ class FasilitasController extends Controller
     public function index()
     {
         $fasilitas = Fasilitas::all();
-        return view('dashboard.superadmin.fasilitas', compact('fasilitas'));
+        $title = 'Fasilitas';
+        return view('dashboard.superadmin.fasilitas.index', compact('fasilitas', 'title'));
     }
 
     public function create()
