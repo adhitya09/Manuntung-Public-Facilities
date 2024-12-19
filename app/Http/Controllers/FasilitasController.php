@@ -37,9 +37,8 @@ class FasilitasController extends Controller
         return view('fasilitas.edit', compact('fasilitas'));
     }
 
-    public function update(Request $request, Fasilitas $fasilitas)
+    public function update(Request $request, $id)
     {
-        dd($request->all());
         $request->validate([
             'nama_toko' => 'required|string|max:255',
             'alamat' => 'required|string',
@@ -48,20 +47,40 @@ class FasilitasController extends Controller
         ]);
 
         try {
-            $fasilitas->update($request->all());
+            // Cari data berdasarkan ID
+            $fasilitas = Fasilitas::findOrFail($id);
+
+            // Update data
+            $fasilitas->update([
+                'nama_toko' => $request->input('nama_toko'),
+                'alamat' => $request->input('alamat'),
+                'latitude' => $request->input('latitude'),
+                'longitude' => $request->input('longitude'),
+            ]);
+
             return redirect()->route('fasilitas.index')->with('success', 'Fasilitas berhasil diperbarui.');
         } catch (\Exception $e) {
-            return redirect()->route('fasilitas.index')->with('error', 'Gagal memperbarui fasilitas.');
+            return redirect()->route('fasilitas.index')->with('error', 'Gagal memperbarui fasilitas. ' . $e->getMessage());
         }
     }
 
-    public function destroy(Fasilitas $fasilitas)
+
+
+
+    // public function destroy(Fasilitas $fasilitas)
+    // {
+    //     try {
+    //         $fasilitas->delete();
+    //         return redirect()->route('fasilitas.index')->with('success', 'Fasilitas berhasil dihapus.');
+    //     } catch (\Exception $e) {
+    //         return redirect()->route('fasilitas.index')->with('error', 'Gagal menghapus fasilitas.');
+    //     }
+    // }
+    public function destroy($id)
     {
-        try {
-            $fasilitas->delete();
-            return redirect()->route('fasilitas.index')->with('success', 'Fasilitas berhasil dihapus.');
-        } catch (\Exception $e) {
-            return redirect()->route('fasilitas.index')->with('error', 'Gagal menghapus fasilitas.');
-        }
+        $product = Fasilitas::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('fasilitas.index')->with('success', 'Produk Berhasil Dihapus!');
     }
 }

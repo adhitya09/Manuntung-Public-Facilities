@@ -41,11 +41,12 @@
                                                     <i class="bi bi-trash-fill"></i>
                                                 </button>
                                                 <form id="delete-form-{{ $item->id }}"
-                                                    action="{{ route('fasilitas.destroy', $item->id) }}" method="POST"
+                                                    action="{{ route('fasilitas.destroy', $item->id) }}"
+                                                    method="POST"
                                                     style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                  @csrf
+                                                  @method('DELETE')
+                                              </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -135,7 +136,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         function openEditModal(item) {
             document.getElementById('editFasilitasForm').action = `/fasilitas/${item.id}`;
             document.getElementById('namaTokoEdit').value = item.nama_toko;
@@ -163,7 +164,43 @@
                 }
             });
         }
+    </script> --}}
+    <script>
+        function openEditModal(item) {
+            // Update action form sesuai dengan middleware superadmin
+            document.getElementById('editFasilitasForm').action = `/dashboard-superadmin/fasilitas/${item.id}`;
+
+            // Mengisi form dengan data yang diterima dari parameter `item`
+            document.getElementById('namaTokoEdit').value = item.nama_toko;
+            document.getElementById('alamatEdit').value = item.alamat;
+            document.getElementById('latitudeEdit').value = item.latitude;
+            document.getElementById('longitudeEdit').value = item.longitude;
+
+            // Menampilkan modal menggunakan Bootstrap
+            var editModal = new bootstrap.Modal(document.getElementById('editFasilitasModal'));
+            editModal.show();
+        }
+
+        function confirmDelete(id) {
+            // Konfirmasi penghapusan menggunakan SweetAlert
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda tidak dapat membatalkan tindakan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit form penghapusan jika pengguna mengonfirmasi
+                    document.getElementById(`delete-form-${id}`).submit();
+                }
+            });
+        }
     </script>
+
 
     @if (session('success'))
         <script>

@@ -16,10 +16,5 @@ class Fasilitas extends Model
         'longitude',
     ];
 
-    public $timestamps = true;
 
-    protected $casts = [
-        'latitude' => 'decimal:8',
-        'longitude' => 'decimal:8',
-    ];
 }
