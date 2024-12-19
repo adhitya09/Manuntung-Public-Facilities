@@ -15,7 +15,7 @@
                             <table id="dataTableHover" class="table table-borderless align-middle text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="text-center">ID</th>
+                                        <th scope="col" class="text-center">#</th>
                                         <th scope="col" class="text-center">Nama Lokasi</th>
                                         <th scope="col" class="text-center">Alamat</th>
                                         <th scope="col" class="text-center">Latitude</th>
@@ -26,7 +26,7 @@
                                 <tbody>
                                     @foreach ($fasilitas as $item)
                                         <tr>
-                                            <td class="text-center">{{ $item->id }}</td>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ $item->nama_toko }}</td>
                                             <td class="text-center">{{ $item->alamat }}</td>
                                             <td class="text-center">{{ $item->latitude }}</td>
