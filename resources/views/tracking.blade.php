@@ -21,7 +21,7 @@
                                     Balikpapan, Kalimantan Timur 76114</p>
                             </div>
                             <div class="tracking-button">
-                                <a href="#" class="btn-tracking">
+                                <a href="{{ route('taman_bekapai') }}" class="btn-tracking">
                                     <img src="assets/img/titik.png" alt="Tracking Icon" class="tracking-icon">
                                     TRACKING
                                     <i class="bi bi-chevron-right"></i>
@@ -43,7 +43,7 @@
                                     Kota Balikpapan</p>
                             </div>
                             <div class="tracking-button">
-                                <a href="#" class="btn-tracking">
+                                <a href="{{ route('taman_tigen') }}" class="btn-tracking">
                                     <img src="assets/img/titik.png" alt="Tracking Icon" class="tracking-icon">
                                     TRACKING
                                     <i class="bi bi-chevron-right"></i>
@@ -65,7 +65,28 @@
                                     Kalimantan Timur 76113</p>
                             </div>
                             <div class="tracking-button">
-                                <a href="" class="btn-tracking">
+                                <a href="{{ route('taman_adipura') }}" class="btn-tracking">
+                                    <img src="assets/img/titik.png" alt="Tracking Icon" class="tracking-icon">
+                                    TRACKING
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contoh Tracking ITK to Plaza Balikpapan -->
+                <div class="col-lg-12 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card">
+                        <img src="{{ asset('auth/images/new-login.jpg') }}" class="card-img-top" alt="Taman Adipura">
+                        <div class="card-body">
+                            <h5 class="card-title">ITK -> Plaza Balikpapan</h5>
+                            <div class="park-details">
+                                <p><i class="bi bi-clock"></i> Buka 24 jam</p>
+                                <p><i class="bi bi-geo-alt"></i> Ini adalah contoh djisktra by pass titik awal dan titik
+                                    akhir</p>
+                            </div>
+                            <div class="tracking-button">
+                                <a href="{{ route('taman_adipura') }}" class="btn-tracking">
                                     <img src="assets/img/titik.png" alt="Tracking Icon" class="tracking-icon">
                                     TRACKING
                                     <i class="bi bi-chevron-right"></i>

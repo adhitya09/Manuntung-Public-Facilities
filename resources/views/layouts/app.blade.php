@@ -33,11 +33,10 @@
 
     {{-- Leatflet JS --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
-
-
 </head>
 
 <body class="index-page">
@@ -53,6 +52,7 @@
 
     {{-- Leatflet JS --}}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -66,79 +66,6 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
-    <script src="{{ asset('assets/js/leatflet.js') }}"></script>
-
-    {{-- <script>
-        // Inisialisasi peta dengan koordinat pengguna
-        var map = L.map('map').setView([{{ $userLocation['latitude'] }}, {{ $userLocation['longitude'] }}], 13);
-
-        // Tambahkan tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19
-        }).addTo(map);
-
-        // Pastikan $route dari server sudah berbentuk array JSON yang valid.
-        var routeCoordinates = {!! json_encode($route) !!};
-
-        if (Array.isArray(routeCoordinates) && routeCoordinates.length > 0) {
-            // Tambahkan rute ke map
-            var polyline = L.polyline(routeCoordinates, {
-                color: 'blue'
-            }).addTo(map);
-
-            // Pusatkan map pada rute
-            map.fitBounds(polyline.getBounds());
-        } else {
-            console.error('Route coordinates tidak valid.');
-        }
-    </script> --}}
-
-    <script>
-        // Koordinat Taman Adipura (Tujuan)
-        var goalLat = -1.2537565056619902;
-        var goalLng = 116.83849830099844;
-
-        // Ambil lokasi pengguna menggunakan geolocation
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var startLat = position.coords.latitude;
-            var startLng = position.coords.longitude;
-
-            // Inisialisasi peta dengan lokasi pengguna
-            var map = L.map('map').setView([startLat, startLng], 13);
-
-            // Tambahkan tile layer OpenStreetMap
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19
-            }).addTo(map);
-
-            // Tambahkan marker untuk lokasi pengguna
-            L.marker([startLat, startLng]).addTo(map)
-                .bindPopup("Lokasi Anda")
-                .openPopup();
-
-            // Tambahkan marker untuk tujuan (Taman Adipura)
-            L.marker([goalLat, goalLng]).addTo(map)
-                .bindPopup("Taman Adipura")
-                .openPopup();
-
-            // Rute antara lokasi pengguna dan tujuan (Taman Adipura)
-            var routeCoordinates = [
-                [startLat, startLng],
-                [goalLat, goalLng]
-            ];
-
-            // Gambar polyline di peta
-            var polyline = L.polyline(routeCoordinates, {
-                color: 'blue'
-            }).addTo(map);
-
-            // Sesuaikan tampilan peta untuk mencakup rute
-            map.fitBounds(polyline.getBounds());
-        }, function(error) {
-            alert("Gagal mendapatkan lokasi Anda.");
-        });
-    </script>
 
 </body>
 

@@ -4,20 +4,21 @@
     <section id="taman" class="taman section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h2>Taman Adipura</h2>
-                <p>Lokasi Anda -> Taman Adipura</p>
+                <h2>Taman Tiga Generasi</h2>
+                <p>Lokasi Anda -> Taman Tiga Generasi</p>
             </div>
 
             <div class="row">
-                <div id="route-buttons"></div>
-                <div id="map"></div>
+                <div id="route-buttons" style="margin: 10px; text-align: center;"></div>
+                <div id="map" style="height: 500px; width: 100%;"></div>
+
             </div>
         </div>
     </section>
     <script>
         // Lokasi tujuan (Taman Bekapai)
-        var goalLat = -1.2536807360482722;
-        var goalLng = 116.8390209073515;
+        var goalLat = -1.2419636198056958;
+        var goalLng = 116.89601043618786;
 
         // Ambil lokasi pengguna menggunakan Geolocation API
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -45,7 +46,7 @@
 
             // Tambahkan marker untuk lokasi tujuan
             L.marker(latLng2).addTo(map)
-                .bindPopup("Taman Adipura")
+                .bindPopup("Taman Tiga Generasi")
                 .openPopup();
 
             // Tambahkan kontrol routing dengan waypoints
