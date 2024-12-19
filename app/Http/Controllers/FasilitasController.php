@@ -38,7 +38,6 @@ class FasilitasController extends Controller
 
     public function update(Request $request, Fasilitas $fasilitas)
     {
-        dd($request->all());
         $request->validate([
             'nama_toko' => 'required|string|max:255',
             'alamat' => 'required|string',
